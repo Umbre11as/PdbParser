@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "Base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/Build",
+      "hidden": true,
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ]
+        }
+      },
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "Release",
+      "binaryDir": "${sourceDir}/Build/Release",
+      "inherits": "Base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "Debug",
+      "binaryDir": "${sourceDir}/Build/Debug",
+      "inherits": "Base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    }
+  ]
+}
