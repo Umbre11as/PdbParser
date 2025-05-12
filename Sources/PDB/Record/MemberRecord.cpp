@@ -45,8 +45,7 @@ namespace LightweightPDB {
     void MemberRecord::Serialize(unsigned char* buffer) {
         attributeMask = *reinterpret_cast<WORD*>(buffer);
         typeIndex = *reinterpret_cast<ULONG*>(buffer + 0x2);
-        const BYTE* ptr = buffer + 6;
-        offset = ReadNumericLeafValue(ptr);
+        offset = *reinterpret_cast<WORD*>(buffer + 0x6);
         name = reinterpret_cast<PCSTR>(buffer + 0x8);
     }
 
