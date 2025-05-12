@@ -5,8 +5,10 @@ namespace LightweightPDB {
     ClassRecord* RecordFactory::MakeClassRecord(BYTE* buffer, UINT index) {
         ClassRecord* record = new ClassRecord(index);
         record->Serialize(buffer);
-        if (record->FieldListIndex() == 0)
+        if (record->FieldListIndex() == 0) {
+            delete record;
             return nullptr;
+        }
 
         return record;
     }
@@ -34,8 +36,6 @@ namespace LightweightPDB {
                 return MakeClassRecord(buffer, index);
             case LF_FIELDLIST:
                 return MakeFieldListRecord(buffer, index);
-            case LF_MEMBER:
-                return MakeMemberRecord(buffer);
             default:
                 return nullptr;
         }

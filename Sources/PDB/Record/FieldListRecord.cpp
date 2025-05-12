@@ -7,9 +7,9 @@
 namespace LightweightPDB {
 
     void FieldListRecord::Serialize(unsigned char* buffer) {
-        RecordHeader* fieldlistHeader = reinterpret_cast<RecordHeader*>(buffer);
-        BYTE* data = reinterpret_cast<BYTE*>(fieldlistHeader) + sizeof(RecordHeader);
-        BYTE* end = reinterpret_cast<BYTE*>(fieldlistHeader) + sizeof(RecordHeader) + fieldlistHeader->RecordLen;
+        RecordHeader* fieldlistHeader = reinterpret_cast<RecordHeader*>(buffer - sizeof(RecordHeader));
+        BYTE* data = buffer;
+        BYTE* end = buffer + fieldlistHeader->RecordLen;
 
         while (data < end) {
             if (data + sizeof(RecordKind) > end)
