@@ -23,7 +23,6 @@ namespace LightweightPDB {
                     MemberRecord* memberRecord = RecordFactory::MakeMemberRecord(data);
                     members.Add(memberRecord);
 
-                    data = reinterpret_cast<BYTE*>(const_cast<char*>(memberRecord->Name())) + strlen(memberRecord->Name()) + 1;
                     break;
                 }
                 case LF_ENUMERATE:
@@ -39,10 +38,7 @@ namespace LightweightPDB {
                     data += 2 + subRecordLen;
                     break;
                 }
-                default: {
-                    data += 1;
-                    break;
-                }
+                default: break;
             }
         }
     }
