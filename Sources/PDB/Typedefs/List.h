@@ -24,11 +24,23 @@ namespace LightweightPDB {
         const T* begin() const { return buffer; }
         const T* end() const { return buffer + size; }
     public:
+        BYTE* Data() {
+            return buffer;
+        }
+
+        BYTE* ConstData() const {
+            return buffer;
+        }
+
         void Add(const T& value) {
             if (size >= capacity)
                 Reserve(capacity == 0 ? 8 : capacity * 2);
 
             buffer[size++] = value;
+        }
+
+        void Set(T* data) {
+            buffer = data;
         }
 
         void Reserve(SIZE_T newCapacity) {

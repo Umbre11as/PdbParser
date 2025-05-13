@@ -24,6 +24,8 @@ namespace LightweightPDB {
 
     class TPIStream final : public PDBStream {
     public:
+        TPIStream(PDB* pdb) : PDBStream(pdb) {}
+    public:
         void Serialize(unsigned char* buffer) override;
     public:
         TpiStreamVersion Version() const;
