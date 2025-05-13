@@ -53,6 +53,10 @@ namespace LightweightPDB {
 
             data += symbol->RecordLen + sizeof(symbol->RecordLen);
         }
+
+        UnmapViewOfFile(exeBase);
+        CloseHandle(mapping);
+        CloseHandle(fileHandle);
     }
 
     List<FunctionInfo> DBIStream::Functions() const {
